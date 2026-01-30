@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS api_logs (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    request_id VARCHAR(64) NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    http_method VARCHAR(10) NOT NULL,
+    request_path VARCHAR(255) NOT NULL,
+    http_status INT NOT NULL,
+    latency_ms BIGINT NOT NULL,
+    ip_address VARCHAR(45) NOT NULL,
+    user_agent TEXT,
+    user_id BIGINT NULL,
+    request_body TEXT NULL,
+    response_body TEXT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_request_id (request_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_timestamp (timestamp),
+    INDEX idx_http_status (http_status),
+    INDEX idx_request_path (request_path)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
